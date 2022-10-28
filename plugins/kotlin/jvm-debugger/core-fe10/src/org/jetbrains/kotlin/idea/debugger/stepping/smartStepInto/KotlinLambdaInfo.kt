@@ -13,6 +13,7 @@ data class KotlinLambdaInfo(
     val parameterIndex: Int,
     val isSuspend: Boolean,
     val isSam: Boolean,
+    val isSamSuspendMethod: Boolean,
     val isNoinline: Boolean,
     val isNameMangledInBytecode: Boolean,
     val methodName: String,
@@ -26,6 +27,7 @@ data class KotlinLambdaInfo(
         callerMethodOrdinal: Int,
         isNameMangledInBytecode: Boolean,
         isSam: Boolean = false,
+        isSamSuspendMethod: Boolean = false,
         methodName: String = OperatorNameConventions.INVOKE.asString()
     ) : this(
             parameterDescriptor.name.asString(),
@@ -33,6 +35,7 @@ data class KotlinLambdaInfo(
             countParameterIndex(callerMethodDescriptor, parameterDescriptor),
             parameterDescriptor.hasSuspendFunctionType,
             isSam,
+            isSamSuspendMethod,
             parameterDescriptor.isNoinline,
             isNameMangledInBytecode,
             methodName,
